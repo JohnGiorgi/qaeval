@@ -15,12 +15,12 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     python_requires='>=3.6',
     install_requires=[
-        'allennlp==1.1.0',
-        'click==7.1.2',
-        'edlib',
-        'spacy==2.2.4',
-        'torch==1.6.0',
-        'transformers==3.0.2',
+        'allennlp>=2.9.0',
+        'click>=7.1.2',
+        'edlib>=1.2.7',
+        'spacy>=2.2.4',
+        'torch>=1.6.0',
+        'transformers>=4.1',
         'urllib3>=1.25.10'
     ]
 )
