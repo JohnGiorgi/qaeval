@@ -1,7 +1,6 @@
 import logging
 import json
 import numpy as np
-from overrides import overrides
 from transformers import BertTokenizer
 
 from allennlp.data.dataset_readers.dataset_reader import DatasetReader
@@ -20,15 +19,14 @@ class LERCDatasetReader(DatasetReader):
         max_length: int = 512,
         holdout_sets: list = [],
         augment: bool = True,
-        lazy: bool = False
+        **kwargs,
     ) -> None:
-        super().__init__(lazy)
+        super().__init__(**kwargs)
         self.max_length = max_length
         self.holdout_sets = holdout_sets if type(holdout_sets) == list else [holdout_sets]
         self.augment = augment
         self.tokenizer = BertTokenizer.from_pretrained(bert_model)
 
-    @overrides
     def _read(self, file_path: str):
         lines = []
         mocha_dataset = json.load(open(file_path))
@@ -85,7 +83,6 @@ class LERCDatasetReader(DatasetReader):
         for line in lines:
             yield self.text_to_instance(**line)
 
-    @overrides
     def text_to_instance(
         self, context, question, reference, candidate, score=None
     ) -> Instance:

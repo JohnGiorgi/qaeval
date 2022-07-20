@@ -10,7 +10,6 @@ from allennlp.models import Model
 from allennlp.nn.beam_search import BeamSearch
 from allennlp.nn.util import sequence_cross_entropy_with_logits
 from allennlp.predictors import Predictor
-from overrides import overrides
 from transformers import BartForConditionalGeneration
 from tqdm import tqdm
 from typing import Any, Dict, List, Tuple
@@ -87,7 +86,6 @@ class _QuestionGenerationModel(Model):
             self._end_id, max_steps=max_decoding_steps, beam_size=beam_size or 1
         )
 
-    @overrides
     def forward(self,
                 source_tokens: TextFieldTensors,
                 metadata: List[Dict[str, Any]],
@@ -240,7 +238,6 @@ class _QuestionGenerationModel(Model):
 
         return log_probabilities, state
 
-    @overrides
     def make_output_human_readable(self, output_dict: Dict[str, torch.Tensor]) -> Dict[str, Any]:
         """
         # Parameters

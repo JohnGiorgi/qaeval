@@ -4,7 +4,6 @@ local bert_model = "facebook/bart-large";
   "dataset_reader": {
     "type": "question_generation",
     "model_name": bert_model,
-    "lazy": false
   },
   "train_data_path": "experiments/generation/data/train.jsonl",
   "validation_data_path": "experiments/generation/data/valid.jsonl",
