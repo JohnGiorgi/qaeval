@@ -1,5 +1,4 @@
 import logging
-from overrides import overrides
 from typing import Dict
 
 import torch
@@ -18,7 +17,6 @@ class PretrainLERC(Model):
     def embedding_dim(self):
         return self.bert.embeddings.word_embeddings.embedding_dim
 
-    @overrides
     def get_metrics(self, reset: bool = False) -> Dict[str, float]:
         return {metric_name: metric.get_metric(reset)
                 for metric_name, metric in self.metrics.items()}
@@ -36,7 +34,6 @@ class PretrainLERC(Model):
         self.loss = torch.nn.CrossEntropyLoss()
         initializer(self)
 
-    @overrides
     def forward(
         self,
         input_ids: torch.Tensor,
